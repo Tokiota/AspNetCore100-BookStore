@@ -1,0 +1,33 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+# Solution 
+*.suo
+/.vs
+/.vs/**/*
+**/.vs
+**/.vs/**/*
+/packages
+
+# directories vs
+**/bin
+bin
+**/obj/
+**/obj/Debug
+**/v14
+
+# other directories 
+**/publish
+publish
+
+# js 
+**/node_modules
+**/wwwroot/lib
+**/wwwroot/js/modules
+**/wwwroot/js/app/modules
+
+# chutzpah && node modules
+_Chutzpah*.html
+
+
