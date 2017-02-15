@@ -36,9 +36,13 @@
         {
             if (serie == null)
             {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            }
+            else
+            {
+                this.libraryUoW.CreateSerie(serie);
                 Response.StatusCode = (int)HttpStatusCode.Created;
             }
-            else this.libraryUoW.CreateSerie(serie);
         }
 
         // PUT api/values/5
@@ -47,9 +51,13 @@
         {
             if (id == null || id == Guid.Empty || Serie == null)
             {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            }
+            else
+            {
+                this.libraryUoW.UpdateSerie(id, Serie);
                 Response.StatusCode = (int)HttpStatusCode.Accepted;
             }
-            else this.libraryUoW.UpdateSerie(id, Serie);
         }
 
         // DELETE api/values/5
@@ -58,9 +66,13 @@
         {
             if (id == null || id == Guid.Empty)
             {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            }
+            else
+            {
+                this.libraryUoW.RemoveSerie(id);
                 Response.StatusCode = (int)HttpStatusCode.Accepted;
             }
-            else this.libraryUoW.RemoveSerie(id);
         }
     }
 }
