@@ -6,9 +6,9 @@ using Tokiota.BookStore.Context;
 using Tokiota.BookStore.Entities;
 using Tokiota.BookStore.Repositories.Core;
 
-namespace Tokiota.SerieStore.Repositories
+namespace Tokiota.BookStore.Repositories
 {
-    public class SerieRepository : IRepositoryCore<Serie, Guid>
+    public class SerieRepository : ISerieRepository
     {
         private readonly IContext context;
 

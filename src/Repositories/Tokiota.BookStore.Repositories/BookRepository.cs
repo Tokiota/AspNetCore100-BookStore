@@ -8,7 +8,7 @@ using Tokiota.BookStore.Repositories.Core;
 
 namespace Tokiota.BookStore.Repositories
 {
-    public class BookRepository : IRepositoryCore<Book, Guid>
+    public class BookRepository : IBookRepository
     {
         private readonly IContext context;
 
