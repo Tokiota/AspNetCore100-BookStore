@@ -36,7 +36,7 @@
         {
             if (book == null)
             {
-                Response.StatusCode = (int)HttpStatusCode.Accepted;
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
             }
             else
             {
