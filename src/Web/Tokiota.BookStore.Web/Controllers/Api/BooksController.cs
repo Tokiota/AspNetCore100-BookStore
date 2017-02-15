@@ -36,9 +36,13 @@
         {
             if (book == null)
             {
+                Response.StatusCode = (int)HttpStatusCode.Accepted;
+            }
+            else
+            {
+                this.libraryUoW.CreateBook(book);
                 Response.StatusCode = (int)HttpStatusCode.Created;
             }
-            else this.libraryUoW.CreateBook(book);
         }
 
         // PUT api/values/5
@@ -47,9 +51,13 @@
         {
             if (id == null || id == Guid.Empty || Book == null)
             {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            }
+            else
+            {
+                this.libraryUoW.UpdateBook(id, Book);
                 Response.StatusCode = (int)HttpStatusCode.Accepted;
             }
-            else this.libraryUoW.UpdateBook(id, Book);
         }
 
         // DELETE api/values/5
@@ -58,9 +66,14 @@
         {
             if (id == null || id == Guid.Empty)
             {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            }
+            else
+            {
+                this.libraryUoW.RemoveBook(id);
                 Response.StatusCode = (int)HttpStatusCode.Accepted;
             }
-            else this.libraryUoW.RemoveBook(id);
+
         }
     }
 }

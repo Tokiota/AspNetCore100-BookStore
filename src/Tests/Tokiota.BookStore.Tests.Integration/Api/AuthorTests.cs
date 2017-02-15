@@ -5,7 +5,9 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Tokiota.BookStore.Entities;
 using Tokiota.BookStore.Web;
@@ -41,20 +43,163 @@ namespace Tokiota.BookStore.Tests.Integration.Api
         [Fact]
         public async Task TestGetAuthorsAndGetAuthorSimon()
         {
-            // Act
+            var author = await this.GetConcreteAuthorByName("Simon");
+            // Assert
+            Assert.NotNull(author);
+            Assert.Equal("Simon", author.Name);
+            Assert.Equal("Scarrow", author.LastName);
+            Assert.Equal(1962, author.Born);
+        }
+
+        [Fact]
+        public async Task TestCreateAuthorAndReturnBadRequest()
+        {
+            StringContent queryString = new StringContent("blabla=bla", Encoding.UTF8, "application/json");
+            var response = await _client.PostAsync("/Api/Authors", queryString);
+            // Assert
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task TestCreateAuthorAndReturnCreated()
+        {
+            var author = new Author
+            {
+                Name = "NameTest",
+                LastName = "LastNameTest",
+                Born = 1000
+            };
+            var serialized = JsonConvert.SerializeObject(author);
+            StringContent queryString = new StringContent(serialized, Encoding.UTF8, "application/json");
+            var response = await _client.PostAsync("/Api/Authors", queryString);
+            // Assert
+            Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task TestCreateAuthorAndVerify()
+        {
+            var author = new Author
+            {
+                Name = "NameTest",
+                LastName = "LastNameTest",
+                Born = 1000
+            };
+            var serialized = JsonConvert.SerializeObject(author);
+            StringContent queryString = new StringContent(serialized, Encoding.UTF8, "application/json");
+            var response = await _client.PostAsync("/Api/Authors", queryString);
+
+            var authorCreated = await this.GetConcreteAuthorByName("NameTest");
+            // Assert
+            Assert.Equal(author.Name, authorCreated.Name);
+            Assert.Equal(author.LastName, authorCreated.LastName);
+            Assert.Equal(author.Born, authorCreated.Born);
+        }
+
+
+        [Fact]
+        public async Task TestUpdateNullAuthorAndReturnBadRequest()
+        {
+            StringContent queryString = new StringContent("blabla=bla", Encoding.UTF8, "application/json");
+            var response = await _client.PutAsync($"/Api/Authors/{Guid.Empty}", queryString);
+            // Assert
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        }
+        [Fact]
+        public async Task TestUpdateAuthorNullIdAndReturnBadRequest()
+        {
+            var author = new Author
+            {
+                Name = "NameTest",
+                LastName = "LastNameTest",
+                Born = 1000
+            };
+            var serialized = JsonConvert.SerializeObject(author);
+            StringContent queryString = new StringContent(serialized, Encoding.UTF8, "application/json");
+            var response = await _client.PutAsync($"/Api/Authors/{Guid.Empty}", queryString);
+            // Assert
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task TestUpdateAuthorAndReturnAccepted()
+        {
+            var author = new Author
+            {
+                Name = "NameTest",
+                LastName = "LastNameTest",
+                Born = 1000
+            };
+            var serialized = JsonConvert.SerializeObject(author);
+            StringContent queryString = new StringContent(serialized, Encoding.UTF8, "application/json");
+
+            var authorToUpdate = await this.GetConcreteAuthorByName("Simon");
+            var response = await _client.PutAsync($"/Api/Authors/{authorToUpdate.Id}", queryString);
+            var authorUpdated = await this.GetConcreteAuthorByName("NameTest");
+            // Assert
+            Assert.Equal(author.Name, authorUpdated.Name);
+            Assert.Equal(author.LastName, authorUpdated.LastName);
+            Assert.Equal(author.Born, authorUpdated.Born);
+        }
+
+
+        [Fact]
+        public async Task TestUpdateAuthorAndVerify()
+        {
+            var author = new Author
+            {
+                Name = "NameTest",
+                LastName = "LastNameTest",
+                Born = 1000
+            };
+            var serialized = JsonConvert.SerializeObject(author);
+            StringContent queryString = new StringContent(serialized, Encoding.UTF8, "application/json");
+
+            var authorToUpdate = await this.GetConcreteAuthorByName("Simon");
+            var response = await _client.PutAsync($"/Api/Authors/{authorToUpdate.Id}", queryString);
+            // Assert
+            Assert.Equal(HttpStatusCode.Accepted, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task TestDeleteAuthorAndReturnBadRequest()
+        {
+            var response = await _client.DeleteAsync($"/Api/Authors/{Guid.Empty}");
+            // Assert
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task TestDeleteAuthorAndReturnAccepted()
+        {
+            var authorSimon = await this.GetConcreteAuthorByName("Simon");
+            var response = await _client.DeleteAsync($"/Api/Authors/{authorSimon.Id}");
+            // Assert
+            Assert.Equal(HttpStatusCode.Accepted, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task TestDeleteAuthorAndVerify()
+        {
+            var authorSimon = await this.GetConcreteAuthorByName("Simon");
+            var response = await _client.DeleteAsync($"/Api/Authors/{authorSimon.Id}");
+            var authorDeleted = await this.GetConcreteAuthorByName("Simon");
+
+            // Assert
+            Assert.Null(authorDeleted);
+        }
+
+
+        private async Task<Author> GetConcreteAuthorByName(string name)
+        {
             var response = await _client.GetAsync("/Api/Authors");
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
             var authors = JsonConvert.DeserializeObject<List<Author>>(responseString);
 
-            var id = authors.FirstOrDefault(a => a.Name == "Simon").Id;
-            var responseConcreteAuthor = await _client.GetAsync($"/Api/Authors/{id}");
-            responseConcreteAuthor.EnsureSuccessStatusCode();
-            var responseStringConcreteAuthor = await response.Content.ReadAsStringAsync();
-            var author = JsonConvert.DeserializeObject<List<Author>>(responseStringConcreteAuthor);
+            var author = authors.FirstOrDefault(a => a.Name == name);
 
-            // Assert
-            Assert.NotNull(author);
+            return author;
         }
 
     }

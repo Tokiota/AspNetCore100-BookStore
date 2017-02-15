@@ -36,9 +36,14 @@
         {
             if (serie == null)
             {
-                Response.StatusCode = (int)HttpStatusCode.Created;
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
             }
-            else this.libraryUoW.CreateSerie(serie);
+            else
+            {
+                this.libraryUoW.CreateSerie(serie);
+                Response.StatusCode = (int)HttpStatusCode.Created;
+
+            }
         }
 
         // PUT api/values/5
@@ -47,9 +52,14 @@
         {
             if (id == null || id == Guid.Empty || Serie == null)
             {
-                Response.StatusCode = (int)HttpStatusCode.Accepted;
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
             }
-            else this.libraryUoW.UpdateSerie(id, Serie);
+            else
+            {
+                this.libraryUoW.UpdateSerie(id, Serie);
+                Response.StatusCode = (int)HttpStatusCode.Accepted;
+
+            }
         }
 
         // DELETE api/values/5
@@ -58,9 +68,14 @@
         {
             if (id == null || id == Guid.Empty)
             {
-                Response.StatusCode = (int)HttpStatusCode.Accepted;
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
             }
-            else this.libraryUoW.RemoveSerie(id);
+            else
+            {
+                this.libraryUoW.RemoveSerie(id);
+                Response.StatusCode = (int)HttpStatusCode.Accepted;
+
+            }
         }
     }
 }
