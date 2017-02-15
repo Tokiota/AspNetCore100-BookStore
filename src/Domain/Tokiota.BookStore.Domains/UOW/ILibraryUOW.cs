@@ -29,23 +29,24 @@ namespace Tokiota.BookStore.Domains.UOW
         void CreateAuthor(Author author);
 
         void CreateSeries(List<Serie> series);
+        void CreateSerie(Serie serie);
         void CreateBooks(List<Book> books);
+        void CreateBook(Book book);
         #endregion Creates
 
 
         #region Updates
 
-        void UpdateAuthor(Guid id, Author authorRaw)
+        void UpdateAuthor(Guid id, Author authorRaw);
 
-
-         void UpdateBook(Guid id, Book bookRaw)
-         void UpdateSerie(Guid id, Serie serieRaw)
+        void UpdateBook(Guid id, Book bookRaw);
+        void UpdateSerie(Guid id, Serie serieRaw);
 
         #endregion Updates
         #region Remove
-        void RemoveAuthor(Guid id)
-        void RemoveBook(Guid id)
-        void RemoveSerie(Guid id)
+        void RemoveAuthor(Guid id);
+        void RemoveBook(Guid id);
+        void RemoveSerie(Guid id);
         #endregion Remove
 
     }

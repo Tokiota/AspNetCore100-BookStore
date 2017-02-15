@@ -125,6 +125,7 @@ namespace Tokiota.BookStore.Domains.UOW
                 {
                     this.CreateBooks(authorId, author.Books);
                 }
+                this.authorRepository.Create(author);
             }
 
         }
@@ -133,6 +134,12 @@ namespace Tokiota.BookStore.Domains.UOW
         {
             series.ForEach(s => s.Id = Guid.NewGuid());
             this.serieRepository.Create(series);
+        }
+
+        public void CreateSerie(Serie serie)
+        {
+            serie.Id = Guid.NewGuid();
+            this.serieRepository.Create(serie);
         }
 
         public void CreateBooks(List<Book> books)
@@ -147,6 +154,16 @@ namespace Tokiota.BookStore.Domains.UOW
                     b.SerieId = series.FirstOrDefault(s => s.Name == b.Serie.Name).Id;
                 }
             });
+        }
+        public void CreateBook(Book book)
+        {
+            book.Id = Guid.NewGuid();
+            if (book.Serie != null)
+            {
+                this.CreateSerie(book.Serie);
+                book.SerieId = book.Serie.Id;
+            }
+            this.bookRepository.Create(book);
         }
 
         private void CreateBooks(Guid authorId, List<Book> books)
