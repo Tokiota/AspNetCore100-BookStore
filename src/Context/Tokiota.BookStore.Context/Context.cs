@@ -6,10 +6,11 @@ using Tokiota.BookStore.Entities;
 
 namespace Tokiota.BookStore.Context
 {
-    public class Context
+    public class Context : IContext
     {
         public Context()
         {
+            ContextInitializer.Initialize(this);
         }
 
         public List<Author> Authors { get; set; }
