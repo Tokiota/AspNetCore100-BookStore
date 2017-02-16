@@ -1,6 +1,28 @@
 ﻿@{
     ViewBag.Title = "Library";
 }
+<article>
 
+    <section>
+        <h1>Library</h1>
+    </section>
+    <section class="content row">
+        <div class="authors col-md-3">
+            <h5>Authors</h5>
+            <ul></ul>
+        </div>
+        <div class="books col-md-3">
+            <h5>Books</h5>
+            <ul></ul>
+        </div>
+        <div class="series col-md-3">
+            <h5>Series</h5>
+            <ul></ul>
+        </div>
+    </section>
+</article>
 
-lañsdkjasdkljaslj
+@section scripts{
+    <script src="~/js/$ajaxHelper.js"></script>
+    <script src="~/js/library/library.js"></script>
+}
