@@ -1,4 +1,9 @@
-﻿.navbar-brand {
+﻿.navbar-inverse {
+    background-color: whitesmoke;
+    border-color: transparent;
+}
+
+.navbar-brand {
     margin: 0;
     padding: 0;
 }
