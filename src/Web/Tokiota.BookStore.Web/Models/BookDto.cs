@@ -11,5 +11,6 @@ namespace Tokiota.BookStore.Web.Models
         public string Name { get; set; }
         public int Published { get; set; }
         public string Genre { get; set; }
+        public string Photo { get; set; }
     }
 }

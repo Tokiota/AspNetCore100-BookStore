@@ -13,8 +13,8 @@
 
         public string Name { get; set; }
         public string LastName { get; set; }
-
         public int Born { get; set; }
+        public string Photo { get; set; }
         public List<Book> Books { get; set; }
 
 

@@ -9,6 +9,8 @@
         }
 
         public string Name { get; set; }
+        public string Photo { get; set; }
+
         public Guid AuthorId { get; set; }
     }
 }
