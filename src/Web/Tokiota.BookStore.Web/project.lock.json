@@ -43,6 +43,22 @@
           }
         }
       },
+      "Mapster/2.6.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.0.1",
+          "NETStandard.Library": "1.6.0",
+          "System.Collections.NonGeneric": "4.0.1",
+          "System.Linq.Queryable": "4.0.1",
+          "System.Reflection.TypeExtensions": "4.1.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/Mapster.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Mapster.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Antiforgery/1.1.0": {
         "type": "package",
         "dependencies": {
@@ -2373,7 +2389,7 @@
           "ref/netstandard1.0/System.Linq.Queryable.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.3/_._": {}
+          "lib/netstandard1.3/System.Linq.Queryable.dll": {}
         }
       },
       "System.Net.Http/4.3.0": {
@@ -3632,6 +3648,18 @@
         "runtimes/win7-arm/native/libuv.dll",
         "runtimes/win7-x64/native/libuv.dll",
         "runtimes/win7-x86/native/libuv.dll"
+      ]
+    },
+    "Mapster/2.6.1": {
+      "sha512": "6Qr1rjfkyJJpeqlqxk9P3l1aOBwO+Mh+a2jo/Y8Ew/R8z75t6a0z2ndLLDa8Z1X1jwD2jhfFnIwobNqIKOoRSQ==",
+      "type": "package",
+      "path": "Mapster/2.6.1",
+      "files": [
+        "Mapster.2.6.1.nupkg.sha512",
+        "Mapster.nuspec",
+        "lib/net40/Mapster.dll",
+        "lib/net45/Mapster.dll",
+        "lib/netstandard1.3/Mapster.dll"
       ]
     },
     "Microsoft.AspNetCore.Antiforgery/1.1.0": {
@@ -9667,6 +9695,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "Mapster >= 2.6.1",
       "Microsoft.AspNetCore.Diagnostics >= 1.0.0",
       "Microsoft.AspNetCore.Mvc >= 1.1.1",
       "Microsoft.AspNetCore.Mvc.Core >= 1.1.1",
