@@ -7,8 +7,8 @@
     </li>
 </template>
 <script>
-    var Vue = require('vue/dist/vue.common');//,
-        //bus = require('./library.bus.vue');
+    var Vue = require('vue/dist/vue.common'),
+        bus = require('./library.bus.vue');
 
     module.exports = Vue.extend({
         name: 'author',
@@ -16,7 +16,7 @@
         methods: {
             selectAuthor: function () {
                 //bus
-                this.$emit('selectAuthor', {
+                bus.$emit('selectAuthor', {
                     id: this.author.id,
                     name: this.author.name,
                     lastName: this.author.lastName,

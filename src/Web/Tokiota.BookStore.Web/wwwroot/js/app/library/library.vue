@@ -3,16 +3,14 @@
         <section>
             <h1>Library</h1>
             <span>{{ message }}</span>
-            <br />
-            <span>{{author.id}}</span>
-
         </section>
-
-        <section class="content row">
-            <authors v-on:authorSelected="authorSelectedOnApp"></authors>
+        <section class="content col-xs-6 col-md-4">
+            <filters></filters>
+            <authors></authors>
             <series></series>
-            <br />
-            <books v-bind:author="author"></books>
+        </section>
+        <section class="content col-xs-12 col-md-8">
+            <books></books>
         </section>
     </article>
 </template>
@@ -23,13 +21,12 @@
         data: function () {
             return {
                 message: "Hello from Vue",
-                author: { id: null }
             };
         },
-        methods: {
-            authorSelectedOnApp: function (author) {
-                this.author = author;
-            }
-        }
+        //methods: {
+        //    authorSelectedOnApp: function (author) {
+        //        this.author = author;
+        //    }
+        //}
     });
 </script>

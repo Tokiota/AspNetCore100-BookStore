@@ -1,17 +1,17 @@
 ﻿<template>
-    <div class="authors col-md-3">
+    <div class="authors col-xs-6">
         <h5>Authors list</h5>
-        <h5 v-if="author != null">{{author.name}} {{author.lastName}}</h5>
-        <h5 v-else="author == null">selecciona</h5>
         <ul class="authorsList">
-            <author v-for="author in authors" v-bind:author="author" v-on:selectAuthor="authorSelected"></author>
+            <author v-for="author in authors" v-bind:author="author"></author><!--v-on:selectAuthor="authorSelected"-->
         </ul>
     </div>
 </template>
 <script>
-    var AjaxHelper = require('../core/ajaxHelper');
-    var Vue = require('vue/dist/vue.common');
+    var AjaxHelper = require('../core/ajaxHelper'),
+        bus = require('./library.bus.vue'),
+        Vue = require('vue/dist/vue.common');
     var ajaxHelper = new AjaxHelper();
+
     module.exports = Vue.extend({
         name: 'authors',
         mounted: function () {
@@ -19,22 +19,23 @@
             ajaxHelper.get('api/authors').done(function (data) {
                 self.authors = data;
             });
+            bus.$on('selectAuthor', function (author) {
+                self.author = author;
+            });
         },
         data: function () {
             return {
-                author:null,
+                author: null,
                 authors: []
             };
-        },
-        methods: {
-            authorSelected: function (author) {
-                this.author = author;
-                this.$emit('authorSelected', this.author);
-            }
-        }
+        }        
     });
 </script>
 <style scoped>
+    .authors {
+        clear: both;
+    }
+
     .authorsList {
         display: flex;
         flex-direction: row;
