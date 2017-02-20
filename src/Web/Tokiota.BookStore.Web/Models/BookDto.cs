@@ -12,5 +12,8 @@ namespace Tokiota.BookStore.Web.Models
         public int Published { get; set; }
         public string Genre { get; set; }
         public string Photo { get; set; }
+
+        public Guid AuthorId { get; set; }
+        public Guid SerieId { get; set; }
     }
 }
