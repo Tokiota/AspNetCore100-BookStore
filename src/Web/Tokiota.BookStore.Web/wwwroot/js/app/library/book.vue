@@ -1,7 +1,7 @@
 ﻿<template>
     <li>
         <img class="bookPhoto" :src="book.photo" v-on:click="selectBook" />
-        <br />
+        <!--<br />-->
         <!--<input type="button" v-on:click="selectBook" />-->
         <!--<span>{{book.name}}</span>-->
     </li>

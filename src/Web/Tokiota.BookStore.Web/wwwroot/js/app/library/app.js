@@ -27,7 +27,7 @@ Vue.component('modal', {
 
 new Vue({
     el: '#libraryModule',
-    data: {
-        showModal: false
-    }   
+    //data: {
+    //    showModal: false
+    //}   
 });
