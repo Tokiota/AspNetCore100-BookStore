@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,10 @@ namespace Tokiota.BookStore.Web
 {
     public static class Register
     {
-        public static void Configure(IServiceCollection services)
+        public static void Configure(IServiceCollection services, IConfigurationRoot configuration)
         {
 
-            Domains.Register.Configure(services);
+            Domains.Register.Configure(services, configuration);
         }
     }
 }

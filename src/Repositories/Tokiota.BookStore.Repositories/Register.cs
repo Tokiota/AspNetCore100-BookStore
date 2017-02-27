@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +9,13 @@ namespace Tokiota.BookStore.Repositories
 {
     public static class Register
     {
-        public static void Configure(IServiceCollection services)
+        public static void Configure(IServiceCollection services, IConfigurationRoot configuration)
         {
-            services.AddSingleton<IAuthorRepository, AuthorRepository>();
-            services.AddSingleton<IBookRepository, BookRepository>();
-            services.AddSingleton<ISerieRepository, SerieRepository>();
+            services.AddScoped<IAuthorRepository, AuthorRepository>();
+            services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<ISerieRepository, SerieRepository>();
 
-            Context.Register.Configure(services);
+            Context.Register.Configure(services, configuration);
         }
     }
 }

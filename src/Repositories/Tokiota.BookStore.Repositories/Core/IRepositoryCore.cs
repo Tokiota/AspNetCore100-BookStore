@@ -10,22 +10,25 @@ namespace Tokiota.BookStore.Repositories.Core
     public interface IRepositoryCore<TEntity, TId> where TEntity : EntityCore<TId>
     {
         #region Gets
-        List<TEntity> Get();
+        IEnumerable<TEntity> Get();
         TEntity Get(TId id);
-        List<TEntity> Get(List<TId> ids);
+        IEnumerable<TEntity> Get(IEnumerable<TId> ids);
         #endregion
 
         #region Commands
         void Create(TEntity objectToCreate);
-        void Create(List<TEntity> objectsToCreate);
+        void Create(IEnumerable<TEntity> objectsToCreate);
 
         void Update(TEntity objectToUpdate);
-        void Update(List<TEntity> objectsToUpdate);
+        void Update(IEnumerable<TEntity> objectsToUpdate);
 
         void Remove(TEntity objectToRemove);
-        void Remove(List<TEntity> objectsToRemove);
+        void Remove(IEnumerable<TEntity> objectsToRemove);
         void Remove(TId id);
-        void Remove(List<TId> ids);
+        void Remove(IEnumerable<TId> ids);
+        #endregion
+        #region Others
+        void SaveChanges();
         #endregion
     }
 }
