@@ -6,14 +6,14 @@ using Tokiota.BookStore.Entities;
 
 namespace Tokiota.BookStore.Context
 {
-    public class ContextInitializer
+    public static class ContextInitializer
     {
-        public ContextInitializer(IContext context)
+        public static void Initialize(IContext context)
         {
-            this.loadAuthors(context);
+            loadAuthors(context);
         }
 
-        private void loadAuthors(IContext context)
+        private static void loadAuthors(IContext context)
         {
             context.Authors = new List<Author>();
             context.Books = new List<Book>();
