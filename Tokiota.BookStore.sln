@@ -30,6 +30,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{11A0F7F2
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Tokiota.BookStore.Tests.Integration", "src\Tests\Tokiota.BookStore.Tests.Integration\Tokiota.BookStore.Tests.Integration.xproj", "{9FA1E9F9-0B71-487A-AE23-4527DC3FE039}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XCutting", "XCutting", "{5AD258D9-9AA4-4060-BC25-E23CFA49C52D}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Tokiota.BookStore.XCutting", "src\XCutting\Tokiota.BookStore.XCutting\Tokiota.BookStore.XCutting.xproj", "{9E0DFE8F-606D-458C-AA68-F12242080FFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +64,10 @@ Global
 		{9FA1E9F9-0B71-487A-AE23-4527DC3FE039}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FA1E9F9-0B71-487A-AE23-4527DC3FE039}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FA1E9F9-0B71-487A-AE23-4527DC3FE039}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E0DFE8F-606D-458C-AA68-F12242080FFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E0DFE8F-606D-458C-AA68-F12242080FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E0DFE8F-606D-458C-AA68-F12242080FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E0DFE8F-606D-458C-AA68-F12242080FFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,5 +79,6 @@ Global
 		{6084232C-9402-4B72-BB4E-6B2324B811A5} = {E42DDD4E-3596-4DD1-B11B-D975A369991F}
 		{F6B025FE-4217-4508-AA3E-401FD817FD41} = {37DD58BE-DBDA-42EC-B2A3-119505534D12}
 		{9FA1E9F9-0B71-487A-AE23-4527DC3FE039} = {11A0F7F2-171D-424E-9DF2-A3BB4E3849A0}
+		{9E0DFE8F-606D-458C-AA68-F12242080FFD} = {5AD258D9-9AA4-4060-BC25-E23CFA49C52D}
 	EndGlobalSection
 EndGlobal

@@ -27,7 +27,7 @@ namespace Tokiota.BookStore.Domains.UOW
 
         public List<Author> GetAuthors()
         {
-            return this.authorRepository.Get();
+            return this.authorRepository.Get().ToList();
         }
 
         public List<Author> GetAuthorsComplete()
@@ -47,7 +47,7 @@ namespace Tokiota.BookStore.Domains.UOW
 
         public List<Author> GetAuthors(List<Guid> ids)
         {
-            return this.authorRepository.Get(ids);
+            return this.authorRepository.Get(ids).ToList();
         }
 
         public List<Author> GetAuthorsComplete(List<Guid> ids)
@@ -72,7 +72,7 @@ namespace Tokiota.BookStore.Domains.UOW
 
         public List<Book> GetBooks()
         {
-            return this.bookRepository.Get();
+            return this.bookRepository.Get().ToList();
         }
 
         public List<Book> GetBooksComplete()
@@ -85,7 +85,7 @@ namespace Tokiota.BookStore.Domains.UOW
 
         public List<Book> GetBooks(List<Guid> ids)
         {
-            return this.bookRepository.Get();
+            return this.bookRepository.Get().ToList();
         }
 
         public List<Book> GetBooksComplete(List<Guid> ids)
@@ -104,12 +104,12 @@ namespace Tokiota.BookStore.Domains.UOW
 
         public List<Serie> GetSeries()
         {
-            return this.serieRepository.Get();
+            return this.serieRepository.Get().ToList();
         }
 
         public List<Serie> GetSeries(List<Guid> ids)
         {
-            return this.serieRepository.Get(ids);
+            return this.serieRepository.Get(ids).ToList();
         }
         #endregion Gets
 

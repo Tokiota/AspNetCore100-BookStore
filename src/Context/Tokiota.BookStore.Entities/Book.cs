@@ -14,7 +14,8 @@
         public string Photo { get; set; }
 
         public Guid AuthorId { get; set; }
-        public Guid SerieId { get; set; }
+        public Author Author { get; set; }
+        public Guid? SerieId { get; set; }
         public Serie Serie { get; set; }
 
     }
