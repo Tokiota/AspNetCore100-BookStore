@@ -42,6 +42,7 @@
             {
                 this.libraryUoW.CreateSerie(serie);
                 Response.StatusCode = (int)HttpStatusCode.Created;
+
             }
         }
 
@@ -57,6 +58,7 @@
             {
                 this.libraryUoW.UpdateSerie(id, Serie);
                 Response.StatusCode = (int)HttpStatusCode.Accepted;
+
             }
         }
 
@@ -72,6 +74,7 @@
             {
                 this.libraryUoW.RemoveSerie(id);
                 Response.StatusCode = (int)HttpStatusCode.Accepted;
+
             }
         }
     }

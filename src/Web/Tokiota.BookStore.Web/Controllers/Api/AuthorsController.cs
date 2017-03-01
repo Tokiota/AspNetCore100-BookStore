@@ -72,6 +72,7 @@
             {
                 this.libraryUoW.RemoveAuthor(id);
                 Response.StatusCode = (int)HttpStatusCode.Accepted;
+
             }
         }
     }
