@@ -73,7 +73,6 @@
                 this.libraryUoW.RemoveBook(id);
                 Response.StatusCode = (int)HttpStatusCode.Accepted;
             }
-
         }
     }
 }

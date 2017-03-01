@@ -38,7 +38,6 @@ namespace Tokiota.BookStore.Domains.UOW
         #region Updates
 
         void UpdateAuthor(Guid id, Author authorRaw);
-
         void UpdateBook(Guid id, Book bookRaw);
         void UpdateSerie(Guid id, Serie serieRaw);
 
