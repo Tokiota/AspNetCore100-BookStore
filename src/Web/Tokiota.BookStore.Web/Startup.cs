@@ -1,5 +1,6 @@
 ﻿namespace Tokiota.BookStore.Web
 {
+    using ExtensionMethods.Startup;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +13,7 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSwagger();
             Register.Configure(services);
         }
 
@@ -19,6 +21,7 @@
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole();
+            app.UseSwaggerAndUI();
 
             if (env.IsDevelopment())
             {
