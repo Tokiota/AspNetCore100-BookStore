@@ -2,7 +2,9 @@
 {
     using Domains.UOW;
     using Entities;
+    using Mapster;
     using Microsoft.AspNetCore.Mvc;
+    using Models;
     using System;
     using System.Collections.Generic;
     using System.Net;
@@ -11,28 +13,41 @@
     public class AuthorsController : Controller
     {
         private readonly ILibraryUOW libraryUoW;
+        private readonly Adapter mapper;
 
-        public AuthorsController(ILibraryUOW libraryUoW)
+        public AuthorsController(ILibraryUOW libraryUoW, Adapter mapper)
         {
             this.libraryUoW = libraryUoW;
+            this.mapper = mapper;
         }
         // GET: api/values
         [HttpGet]
-        public IEnumerable<Author> Get()
+        public IEnumerable<AuthorDto> Get()
         {
-            return this.libraryUoW.GetAuthorsComplete();
+            var authors = this.libraryUoW.GetAuthors();
+            return this.mapper.Adapt<IEnumerable<AuthorDto>>(authors);
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public Author Get(Guid id)
+        public AuthorDto Get(Guid id)
         {
-            return this.libraryUoW.GetAuthor(id);
+            if (id == null || id == Guid.Empty)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return null;
+            }
+            else
+            {
+                var author = this.libraryUoW.GetAuthor(id);
+                Response.StatusCode = (int)HttpStatusCode.Created;
+                return this.mapper.Adapt<AuthorDto>(author);
+            }
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]Author author)
+        public void Post([FromBody]AuthorDto author)
         {
             if (author == null)
             {
@@ -40,14 +55,15 @@
             }
             else
             {
-                this.libraryUoW.CreateAuthor(author);
+                var authorEntity = this.mapper.Adapt<Author>(author);
+                this.libraryUoW.CreateAuthor(authorEntity);
                 Response.StatusCode = (int)HttpStatusCode.Created;
             }
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(Guid id, [FromBody]Author author)
+        public void Put(Guid id, [FromBody]AuthorDto author)
         {
             if (id == null || id == Guid.Empty || author == null)
             {
@@ -55,7 +71,8 @@
             }
             else
             {
-                this.libraryUoW.UpdateAuthor(id, author);
+                var authorEntity = this.mapper.Adapt<Author>(author);
+                this.libraryUoW.UpdateAuthor(id, authorEntity);
                 Response.StatusCode = (int)HttpStatusCode.Accepted;
             }
         }
