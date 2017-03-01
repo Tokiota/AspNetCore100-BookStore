@@ -29,7 +29,9 @@ namespace Tokiota.BookStore.Domains.UOW
         void CreateAuthor(Author author);
 
         void CreateSeries(List<Serie> series);
+        void CreateSerie(Serie serie);
         void CreateBooks(List<Book> books);
+        void CreateBook(Book book);
         #endregion Creates
 
 
