@@ -25,8 +25,15 @@
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
-            app.UseWelcomePage();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Library}/{action=Index}/{id?}");
+            });
         }
     }
 }
