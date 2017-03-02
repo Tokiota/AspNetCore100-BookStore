@@ -1,11 +1,11 @@
-﻿using System;
-using Tokiota.BookStore.Entities;
-using Tokiota.BookStore.Repositories.Services.Core;
+﻿using System.Threading.Tasks;
 
 namespace Tokiota.BookStore.Repositories.UoW
 {
+    using System;
     using Context;
-    using Services;
+    using Entities;
+    using Services.Core;
 
     public class LibraryUoW : ILibraryUoW
     {
@@ -25,10 +25,10 @@ namespace Tokiota.BookStore.Repositories.UoW
             this.SerieRepository = serieRepository;
         }
 
-        public int SaveChanges()
+        public Task<int> SaveChanges()
         {
-            if (CanSave) return _context.SaveChanges();
-            return -1;
+            if (CanSave) return _context.SaveChangesAsync();
+            return Task.Run(() => -1);
         }
     }
 }

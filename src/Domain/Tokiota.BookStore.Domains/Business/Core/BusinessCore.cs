@@ -1,4 +1,6 @@
-﻿namespace Tokiota.BookStore.Domains.Business.Core
+﻿using System.Threading.Tasks;
+
+namespace Tokiota.BookStore.Domains.Business.Core
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -8,78 +10,75 @@
 
     public class BusinessCore<TEntity, TId> : IBusinessCore<TEntity, TId> where TEntity : EntityCore<TId>
     {
-        protected readonly ILibraryUoW _uow;
-        protected readonly IRepositoryCore<TEntity, TId> _repository;
+        protected readonly ILibraryUoW Uow;
+        protected readonly IRepositoryCore<TEntity, TId> Repository;
 
         public BusinessCore(ILibraryUoW uow, IRepositoryCore<TEntity, TId> repository)
         {
-            _uow = uow;
-            _repository = repository;
+            Uow = uow;
+            Repository = repository;
         }
 
-        public virtual TEntity Get(TId id)
+        public virtual Task<TEntity> Get(TId id)
         {
-            return _repository.Get(id);
+            return Repository.Get(id);
         }
 
-        public virtual List<TEntity> Get()
+        public virtual Task<List<TEntity>> Get()
         {
-            return _repository.Get().ToList();
+            return Repository.Get();
         }
 
-        public virtual List<TEntity> Get(IEnumerable<TId> ids)
+        public virtual Task<List<TEntity>> Get(IEnumerable<TId> ids)
         {
-            return _repository.Get(ids).ToList();
+            return Repository.Get(ids);
         }
 
-        public virtual void Add(TEntity entity)
+        public virtual Task Add(TEntity entity)
         {
-            _repository.Create(entity);
-            _uow.SaveChanges();
+            return Repository.Create(entity);
         }
 
-        public virtual void Add(IEnumerable<TEntity> entities)
+        public virtual Task Add(IEnumerable<TEntity> entities)
         {
-            _repository.Create(entities);
-            _uow.SaveChanges();
+            return Repository.Create(entities);
         }
 
         public virtual void Update(TId id, TEntity entity)
         {
             // TId id is only for overrides
             entity.Id = id;
-            _repository.Update(entity);
-            _uow.SaveChanges();
+            Repository.Update(entity);
         }
 
         public virtual void Update(IEnumerable<TEntity> entities)
         {
-            _repository.Update(entities);
-            _uow.SaveChanges();
+            Repository.Update(entities);
         }
 
-        public virtual void Remove(TId id)
+        public virtual Task Remove(TId id)
         {
-            _repository.Remove(id);
-            _uow.SaveChanges();
+            return Repository.Remove(id);
         }
 
         public virtual void Remove(TEntity entity)
         {
-            _repository.Remove(entity);
-            _uow.SaveChanges();
+            Repository.Remove(entity);
         }
 
-        public virtual void Remove(IEnumerable<TId> ids)
+        public virtual Task Remove(IEnumerable<TId> ids)
         {
-            _repository.Remove(ids);
-            _uow.SaveChanges();
+            return Repository.Remove(ids);
         }
 
         public virtual void Remove(IEnumerable<TEntity> entities)
         {
-            _repository.Remove(entities);
-            _uow.SaveChanges();
+            Repository.Remove(entities);
+        }
+
+        public virtual Task SaveChanges()
+        {
+            return Uow.SaveChanges();
         }
     }
 }
