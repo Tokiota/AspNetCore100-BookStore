@@ -1,20 +1,20 @@
-﻿
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Tokiota.BookStore.Context;
-using Tokiota.BookStore.Entities.Core;
-
-namespace Tokiota.BookStore.Repositories.Core
+﻿namespace Tokiota.BookStore.Repositories.Services.Core
 {
+    using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Tokiota.BookStore.Context;
+    using Tokiota.BookStore.Entities.Core;
+
     public class RepositoryCore<TEntity, TId> : IRepositoryCore<TEntity, TId> where TEntity : EntityCore<TId>
     {
         #region Atributte
         private readonly LibraryContext context;
         private readonly DbSet<TEntity> dbSet;
         #endregion
+
         #region Contructor
         public RepositoryCore(LibraryContext context)
         {
@@ -78,6 +78,7 @@ namespace Tokiota.BookStore.Repositories.Core
         #endregion
 
         #region Others
+
         public void SaveChanges()
         {
             this.context.SaveChanges();
