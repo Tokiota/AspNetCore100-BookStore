@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Tokiota.BookStore.Entities.Core;
 
-namespace Tokiota.BookStore.Repositories.Core
+namespace Tokiota.BookStore.Repositories.Services.Core
 {
     public interface IRepositoryCore<TEntity, TId> where TEntity : EntityCore<TId>
     {
@@ -27,6 +27,7 @@ namespace Tokiota.BookStore.Repositories.Core
         void Remove(TId id);
         void Remove(IEnumerable<TId> ids);
         #endregion
+
         #region Others
         void SaveChanges();
         #endregion

@@ -1,4 +1,6 @@
-﻿namespace Tokiota.BookStore.Entities.Core
+﻿using System;
+
+namespace Tokiota.BookStore.Entities.Core
 {
     public class EntityCore<TId>
     {
