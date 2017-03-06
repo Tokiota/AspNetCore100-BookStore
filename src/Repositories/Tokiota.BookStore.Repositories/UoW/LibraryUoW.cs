@@ -1,11 +1,10 @@
-﻿using System.Threading.Tasks;
-
-namespace Tokiota.BookStore.Repositories.UoW
+﻿namespace Tokiota.BookStore.Repositories.UoW
 {
     using System;
+    using System.Threading.Tasks;
     using Context;
     using Entities;
-    using Services.Core;
+    using XCutting;
 
     public class LibraryUoW : ILibraryUoW
     {
