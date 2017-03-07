@@ -59,7 +59,7 @@ namespace Tokiota.BookStore.Tests.Integration.Api
         }
 
         [Fact]
-        public async Task TestCreateSerieAndReturnCreated()
+        public async Task TestCreateSerieAndReturnOK()
         {
             var serie = new Serie
             {
@@ -69,7 +69,7 @@ namespace Tokiota.BookStore.Tests.Integration.Api
             StringContent queryString = new StringContent(serialized, Encoding.UTF8, "application/json");
             var response = await _client.PostAsync("/Api/Series", queryString);
             // Assert
-            Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
 
         [Fact]

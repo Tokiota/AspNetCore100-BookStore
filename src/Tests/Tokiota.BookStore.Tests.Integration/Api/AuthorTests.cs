@@ -9,21 +9,41 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using FluentAssertions.Common;
+using Microsoft.Extensions.DependencyInjection;
+using Tokiota.BookStore.Context;
 using Tokiota.BookStore.Entities;
 using Tokiota.BookStore.Web;
 using Xunit;
+using Microsoft.EntityFrameworkCore;
 
 namespace Tokiota.BookStore.Tests.Integration.Api
 {
-    public class AuthorTests
+    public class AuthorTests 
     {
         private readonly TestServer _server;
         private readonly HttpClient _client;
 
         public AuthorTests()
         {
-            _server = new TestServer(new WebHostBuilder()
-                       .UseStartup<Startup>());
+            //_server = new TestServer(TestServer.CreateBuilder(null, app =>
+            //{
+            //    app.UsePrimeCheckerMiddleware();
+            //},
+            //services =>
+            //{
+            //    services.AddSingleton<IPrimeService, NegativePrimeService>();
+            //    services.AddSingleton<IPrimeCheckerOptions>(_ => new AlternativePrimeCheckerOptions(_fixture.Path));
+            //}));
+            _server = new TestServer(new WebHostBuilder().UseStartup<Startup>().ConfigureServices(s =>
+                {
+                    s.AddEntityFrameworkSqlServer().AddDbContext< LibraryContext>(o =>o.UseInMemoryDatabase());
+                })
+            );
+
+
+            //new WebHostBuilder()
+            //       .UseStartup<Startup>());
             _client = _server.CreateClient();
         }
 
@@ -61,7 +81,7 @@ namespace Tokiota.BookStore.Tests.Integration.Api
         }
 
         [Fact]
-        public async Task TestCreateAuthorAndReturnCreated()
+        public async Task TestCreateAuthorAndReturnOK()
         {
             var author = new Author
             {
@@ -73,7 +93,7 @@ namespace Tokiota.BookStore.Tests.Integration.Api
             StringContent queryString = new StringContent(serialized, Encoding.UTF8, "application/json");
             var response = await _client.PostAsync("/Api/Authors", queryString);
             // Assert
-            Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
 
         [Fact]

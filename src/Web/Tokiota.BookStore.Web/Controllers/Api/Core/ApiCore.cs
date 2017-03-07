@@ -51,7 +51,7 @@
         [HttpPost]
         public async Task<IActionResult> Post(TEnity entity)
         {
-            if (ModelState.IsValid && entity != null)
+            if (entity != null && ModelState.IsValid )
             {
                 await Business.Add(entity);
                 await Business.SaveChanges();

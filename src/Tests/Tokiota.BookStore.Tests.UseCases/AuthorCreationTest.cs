@@ -1,72 +1,69 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TestStack.BDDfy;
-using Tokiota.BookStore.Domains.UseCases.CreateAuthor;
-using Tokiota.BookStore.Web.Models;
-using Xunit;
+﻿//namespace Tokiota.BookStore.Tests.UseCases
+//{
+//    using System.Threading.Tasks;
+//    using Domains.UseCases.CreateAuthor;
+//    using TestStack.BDDfy;
+//    using Web.Models;
+//    using Xunit;
 
-namespace Tokiota.BookStore.Tests.UseCases
-{
-    [Story(AsA = "User of the application",
-            IWant = "To create an author",
-            SoThat = "Author is created"
-        )]
-    public class AuthorCreationTest
-    {
-        private AuthorDto _request;
-        private CreateAuthorUseCase _useCase;
+//    [Story(AsA = "User of the application",
+//            IWant = "To create an author",
+//            SoThat = "Author is created"
+//        )]
+//    public class AuthorCreationTest
+//    {
+//        private AuthorDto _request;
+//        private CreateAuthorUseCase _useCase;
 
-        public AuthorCreationTest()
-        {
-            _unitOfWork = new AgendaUOW(Factories.EntityFrameworkFactory.GetMemoryDbContext());
-            _useCase = new CreateAuthorUseCase(_unitOfWork);
-            FillExpectedResponses();
-        }
+//        public AuthorCreationTest()
+//        {
+//            _unitOfWork = new AgendaUOW(Factories.EntityFrameworkFactory.GetMemoryDbContext());
+//            _useCase = new CreateAuthorUseCase(_unitOfWork);
+//            FillExpectedResponses();
+//        }
 
 
-        [Fact]
-        public async Task CustomScheduleView()
-        {
-            _factory = await BusinessFactory.Create(_unitOfWork);
-            this.Given(x => x.AnAuthorGivenByTheApplicationUser())
-                .When(x => x.CreateAnAuthor())
-                .Then(x => x.IFindAnAppointmentsCustom())
-                .BDDfy();
-        }
+//        [Fact]
+//        public async Task CustomScheduleView()
+//        {
+//            _factory = await BusinessFactory.Create(_unitOfWork);
+//            this.Given(x => x.AnAuthorGivenByTheApplicationUser())
+//                .When(x => x.CreateAnAuthor())
+//                .Then(x => x.IFindAnAppointmentsCustom())
+//                .BDDfy();
+//        }
 
-        #region Given
+//        #region Given
 
-        public void AnAuthorGivenByTheApplicationUser()
-        {
-            _request = new AuthorDto()
-            {
-                Name = "author name",
-                LastName = " author last name",
-                Born = 1999,
-                Photo = "this is an url"
-            };
-        }
+//        public void AnAuthorGivenByTheApplicationUser()
+//        {
+//            _request = new AuthorDto()
+//            {
+//                Name = "author name",
+//                LastName = " author last name",
+//                Born = 1999,
+//                Photo = "this is an url"
+//            };
+//        }
 
-        #endregion Given
+//        #endregion Given
 
-        #region When 
+//        #region When 
 
-        public async Task CreateAuthor()
-        {
+//        public async Task CreateAuthor()
+//        {
 
-        }
+//        }
 
-        #endregion When 
+//        #endregion When 
 
-        #region Then
+//        #region Then
 
-        public void ICreateAnAuthor()
-        {
+//        public void ICreateAnAuthor()
+//        {
 
-        }
+//        }
 
-        #endregion Then
-    }
-}
+//        #endregion Then
+//    }
+//}

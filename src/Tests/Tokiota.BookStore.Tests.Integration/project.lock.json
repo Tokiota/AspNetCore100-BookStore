@@ -1033,6 +1033,19 @@
           "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Design.dll": {}
         }
       },
+      "Microsoft.EntityFrameworkCore.InMemory/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "1.1.0",
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.InMemory.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.InMemory.dll": {}
+        }
+      },
       "Microsoft.EntityFrameworkCore.Relational/1.1.0": {
         "type": "package",
         "dependencies": {
@@ -5263,6 +5276,19 @@
         "lib/net451/Microsoft.EntityFrameworkCore.Design.xml",
         "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Design.dll",
         "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Design.xml"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.InMemory/1.1.0": {
+      "sha512": "b7rNBaQ2DhJkcElVxC1bwQNO21zD9K16YaNOjdH+TBWf7xkN8TPYbCPU1hL3IlnrBz3p5XKZSoDs9W1T64oALQ==",
+      "type": "package",
+      "path": "Microsoft.EntityFrameworkCore.InMemory/1.1.0",
+      "files": [
+        "Microsoft.EntityFrameworkCore.InMemory.1.1.0.nupkg.sha512",
+        "Microsoft.EntityFrameworkCore.InMemory.nuspec",
+        "lib/net451/Microsoft.EntityFrameworkCore.InMemory.dll",
+        "lib/net451/Microsoft.EntityFrameworkCore.InMemory.xml",
+        "lib/netstandard1.3/Microsoft.EntityFrameworkCore.InMemory.dll",
+        "lib/netstandard1.3/Microsoft.EntityFrameworkCore.InMemory.xml"
       ]
     },
     "Microsoft.EntityFrameworkCore.Relational/1.1.0": {
@@ -11284,6 +11310,7 @@
       "FluentAssertions >= 4.19.0",
       "Microsoft.AspNetCore.TestHost >= 1.1.0",
       "Microsoft.DotNet.InternalAbstractions >= 1.0.1-beta-003206",
+      "Microsoft.EntityFrameworkCore.InMemory >= 1.1.0",
       "TestStack.BDDfy >= 4.3.2",
       "Tokiota.BookStore.Web",
       "dotnet-test-xunit >= 2.2.0-preview2-build1029",
