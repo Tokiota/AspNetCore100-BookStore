@@ -6,8 +6,8 @@ window.app.common.helpers.$ajaxHelper = (function () {
     function baseOptions(url, data, options, showLoader) {
         options = options || {};
         options.url = getUrl(url);
-        options.dataType = options.dataType || "text json";
-        options.contentType = options.contentType || "application/json";
+        options.dataType = options.dataType || "JSON";
+        options.contentType = options.contentType || "application/json; charset=utf-8";
         //if (showLoader) {
         //    loader.show();
         //    options.complete = function () { loader.hide(); };

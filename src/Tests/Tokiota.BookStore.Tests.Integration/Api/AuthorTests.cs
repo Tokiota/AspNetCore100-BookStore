@@ -37,7 +37,7 @@ namespace Tokiota.BookStore.Tests.Integration.Api
             //}));
             _server = new TestServer(new WebHostBuilder().UseStartup<Startup>().ConfigureServices(s =>
                 {
-                    s.AddEntityFrameworkSqlServer().AddDbContext< LibraryContext>(o =>o.UseInMemoryDatabase());
+                    s.AddEntityFrameworkSqlServer().AddDbContext<LibraryContext>(o =>o.UseInMemoryDatabase());
                 })
             );
 

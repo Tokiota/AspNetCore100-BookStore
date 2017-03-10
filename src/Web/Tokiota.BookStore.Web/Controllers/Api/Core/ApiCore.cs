@@ -49,39 +49,39 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(TEnity entity)
+        public async Task<IActionResult> Post([FromBody]TEnity entity)
         {
             if (entity != null && ModelState.IsValid )
             {
                 await Business.Add(entity);
                 await Business.SaveChanges();
-                return Ok();
+                return Ok(new {});
             }
 
             return BadRequest();
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Put(Guid id, TEnity entity)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(Guid id, [FromBody]TEnity entity)
         {
             if (id != Guid.Empty && ModelState.IsValid && entity != null)
             {
                 Business.Update(id, entity);
                 await Business.SaveChanges();
-                return Ok();
+                return Ok(new { });
             }
 
             return BadRequest();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             if (id != Guid.Empty)
             {
                 await Business.Remove(id);
                 await Business.SaveChanges();
-                return Ok();
+                return Ok(new { });
             }
 
             return BadRequest();

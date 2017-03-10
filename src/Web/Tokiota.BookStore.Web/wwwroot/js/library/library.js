@@ -3,8 +3,9 @@
         urls = {
             authors: 'api/authors',
             books: 'api/books',
-            series: 'api/series',
+            series: 'api/series'
         };
+
     function Library() {
         var self = this;
 
