@@ -36,7 +36,10 @@
 
   "buildOptions": {
     "emitEntryPoint": true,
-    "preserveCompilationContext": true
+    "preserveCompilationContext": true,
+    "copyToOutput": [
+      "Dockerfile"
+    ] 
   },
 
   "runtimeOptions": {
@@ -47,13 +50,16 @@
 
   "publishOptions": {
     "include": [
+      "Dockerfile",
       "wwwroot",
       "Views",
       "web.config"
-    ]
+    ],
+    "includeFiles": [ "Dockerfile"]
   },
 
   "scripts": {
+    "prepublish": [ "npm install", "webpack", "npm run test" ],
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   }
 }
