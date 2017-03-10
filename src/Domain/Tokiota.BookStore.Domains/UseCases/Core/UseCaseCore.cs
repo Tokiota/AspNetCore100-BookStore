@@ -14,6 +14,6 @@
         protected ILibraryUoW UoW { get; set; }
 
 
-        public abstract TResponse Handle(TRequest request);
+        public abstract Task<TResponse> Handle(TRequest request);
     }
 }

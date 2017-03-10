@@ -1,5 +1,8 @@
-﻿namespace Tokiota.BookStore.Domains.UseCases.CreateAuthor
+﻿using System;
+
+namespace Tokiota.BookStore.Domains.UseCases.CreateAuthor
 {
+    using System.Threading.Tasks;
     using Core;
     using Entities;
     using XCutting;
@@ -8,20 +11,21 @@
     {
         public CreateAuthorUseCase(ILibraryUoW uow) : base(uow) { }
 
-        public override CreateAuthorResponse Handle(CreateAuthorRequest request)
+        public override async Task<CreateAuthorResponse> Handle(CreateAuthorRequest request)
         {
             var response = new CreateAuthorResponse();
             var author = MapFromRequestToEntity(request);
-            UoW.AuthorRepository.Create(author);
-
+            await UoW.AuthorRepository.Create(author);
+            await UoW.SaveChanges();
             response.Response = Enums.Responses.eResponseType.Ok;
             return response;
         }
 
-        public Author MapFromRequestToEntity(CreateAuthorRequest request)
+        private Author MapFromRequestToEntity(CreateAuthorRequest request)
         {
             var author = new Author()
             {
+                Id = Guid.NewGuid(),
                 Name = request.Name,
                 LastName = request.LastName,
                 Born = request.Born,

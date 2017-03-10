@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "1.0.0-*",
   "testRunner": "xunit",
   "dependencies": {
@@ -8,7 +8,8 @@
     "dotnet-test-xunit": "2.2.0-preview2-build1029",
     "Tokiota.BookStore.Web": "*",
     "FluentAssertions": "4.19.0",
-    "xunit": "2.2.0-rc2-build3523"
+    "xunit": "2.2.0-rc2-build3523",
+    "Microsoft.EntityFrameworkCore.InMemory": "1.1.0"
   },
   "frameworks": {
     "netcoreapp1.0": {

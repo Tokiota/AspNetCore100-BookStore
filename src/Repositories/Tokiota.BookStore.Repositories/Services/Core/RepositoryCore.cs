@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Tokiota.BookStore.XCutting;
 
 namespace Tokiota.BookStore.Repositories.Services.Core
@@ -25,9 +27,13 @@ namespace Tokiota.BookStore.Repositories.Services.Core
         #endregion
 
         #region Gets
-        public Task<List<TEntity>> Get()
+        public Task<List<TEntity>> Get(Expression<Func<TEntity, bool>> filter = null)
         {
-            return this.DbSet.ToListAsync();
+            IQueryable<TEntity> query = this.DbSet;
+
+            if (filter != null) query = query.Where(filter);
+
+            return query.ToListAsync();
         }
         public Task<TEntity> Get(TId id)
         {

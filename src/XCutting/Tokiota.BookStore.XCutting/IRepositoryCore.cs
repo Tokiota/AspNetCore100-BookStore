@@ -1,4 +1,7 @@
-﻿namespace Tokiota.BookStore.XCutting
+﻿using System;
+using System.Linq.Expressions;
+
+namespace Tokiota.BookStore.XCutting
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -8,7 +11,7 @@
     {
         #region Gets
 
-        Task<List<TEntity>> Get();
+        Task<List<TEntity>> Get(Expression<Func<TEntity, bool>> filter = null);
 
         Task<TEntity> Get(TId id);
 

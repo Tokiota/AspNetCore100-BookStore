@@ -1,69 +1,81 @@
-﻿//namespace Tokiota.BookStore.Tests.UseCases
-//{
-//    using System.Threading.Tasks;
-//    using Domains.UseCases.CreateAuthor;
-//    using TestStack.BDDfy;
-//    using Web.Models;
-//    using Xunit;
+﻿using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
+using Tokiota.BookStore.Context;
+using Tokiota.BookStore.Repositories.UoW;
+using Tokiota.BookStore.Tests.UseCases.Common;
+using Tokiota.BookStore.XCutting;
 
-//    [Story(AsA = "User of the application",
-//            IWant = "To create an author",
-//            SoThat = "Author is created"
-//        )]
-//    public class AuthorCreationTest
-//    {
-//        private AuthorDto _request;
-//        private CreateAuthorUseCase _useCase;
+namespace Tokiota.BookStore.Tests.UseCases
+{
+    using System.Threading.Tasks;
+    using Domains.UseCases.CreateAuthor;
+    using TestStack.BDDfy;
+    using Web.Models;
+    using Xunit;
 
-//        public AuthorCreationTest()
-//        {
-//            _unitOfWork = new AgendaUOW(Factories.EntityFrameworkFactory.GetMemoryDbContext());
-//            _useCase = new CreateAuthorUseCase(_unitOfWork);
-//            FillExpectedResponses();
-//        }
+    [Collection("UseCases"), Story(AsA = "User of the application",
+            IWant = "To create an author",
+            SoThat = "Author is created"
+        )]
+    public class AuthorCreationTest
+    {
+        private CreateAuthorRequest _request;
+        private CreateAuthorUseCase _useCase;
+        private CreateAuthorResponse _response;
+        private readonly ILibraryUoW _unitOfWork;
+        private readonly ContextFactory _factory;
+
+        public AuthorCreationTest()
+        {
+            _factory =  new ContextFactory();
+            _factory.Initialize().Wait();
+            _unitOfWork = _factory.Uow;
+
+            _useCase = new CreateAuthorUseCase(_unitOfWork);
+        }
 
 
-//        [Fact]
-//        public async Task CustomScheduleView()
-//        {
-//            _factory = await BusinessFactory.Create(_unitOfWork);
-//            this.Given(x => x.AnAuthorGivenByTheApplicationUser())
-//                .When(x => x.CreateAnAuthor())
-//                .Then(x => x.IFindAnAppointmentsCustom())
-//                .BDDfy();
-//        }
+        [Fact]
+        public void CreateAuthorTest()
+        {
+            this.Given(x => x.AnAuthorGivenByTheApplicationUser())
+                .When(x => x.CreateAnAuthor())
+                .Then(x => x.ICreateAnAuthor())
+                .BDDfy();
+        }
 
-//        #region Given
+        #region Given
 
-//        public void AnAuthorGivenByTheApplicationUser()
-//        {
-//            _request = new AuthorDto()
-//            {
-//                Name = "author name",
-//                LastName = " author last name",
-//                Born = 1999,
-//                Photo = "this is an url"
-//            };
-//        }
+        public void AnAuthorGivenByTheApplicationUser()
+        {
+            _request = new CreateAuthorRequest()
+            {
+                Name = "author name",
+                LastName = " author last name",
+                Born = 1999,
+                Photo = "this is an url"
+            };
+        }
 
-//        #endregion Given
+        #endregion Given
 
-//        #region When 
+        #region When 
 
-//        public async Task CreateAuthor()
-//        {
+        public async Task CreateAnAuthor()
+        {
+            _response = await _useCase.Handle(_request);
+        }
 
-//        }
+        #endregion When 
 
-//        #endregion When 
+        #region Then
 
-//        #region Then
+        public void ICreateAnAuthor()
+        {
+            _response.Should().NotBeNull();
+            _response.IsValid.Should().BeTrue();
+        }
 
-//        public void ICreateAnAuthor()
-//        {
-
-//        }
-
-//        #endregion Then
-//    }
-//}
+        #endregion Then
+    }
+}
