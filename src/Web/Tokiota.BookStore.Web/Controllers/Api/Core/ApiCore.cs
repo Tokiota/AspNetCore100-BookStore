@@ -55,7 +55,7 @@
             {
                 await Business.Add(entity);
                 await Business.SaveChanges();
-                return Ok(new {});
+                return Ok(new { });
             }
 
             return BadRequest();
