@@ -55,33 +55,31 @@
             {
                 await Business.Add(entity);
                 await Business.SaveChanges();
-                return Ok();
+                return Ok(new { });
             }
 
             return BadRequest();
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Put(Guid id, TEnity entity)
         {
             if (id != Guid.Empty && entity != null)
             {
                 Business.Update(id, entity);
-                await Business.SaveChanges();
-                return Ok();
+                return Ok(new { });
             }
 
             return BadRequest();
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> Delete(Guid id)
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid id)
         {
             if (id != Guid.Empty)
             {
-                await Business.Remove(id);
-                await Business.SaveChanges();
-                return Ok();
+                Business.Remove(id);
+                return Ok(new { });
             }
 
             return BadRequest();
