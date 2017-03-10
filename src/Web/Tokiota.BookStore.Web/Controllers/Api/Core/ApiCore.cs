@@ -53,31 +53,31 @@
             if (entity != null)
             {
                 Business.Add(entity);
-                return Ok();
+                return Ok(new { });
             }
 
             return BadRequest();
         }
 
-        [HttpPut]
-        public IActionResult Put(Guid id, TEnity entity)
+        [HttpPut("{id}")]
+        public IActionResult Put(Guid id, [FromBody] TEnity entity)
         {
             if (id != Guid.Empty && entity != null)
             {
                 Business.Update(id, entity);
-                return Ok();
+                return Ok(new {});
             }
 
             return BadRequest();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
             if (id != Guid.Empty)
             {
                 Business.Remove(id);
-                return Ok();
+                return Ok(new {});
             }
 
             return BadRequest();
