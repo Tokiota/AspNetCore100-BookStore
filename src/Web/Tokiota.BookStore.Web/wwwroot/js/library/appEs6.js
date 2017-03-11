@@ -1,6 +1,6 @@
-﻿import Author from './Author';
-import Book from './Book';
-import Serie from './Serie';
+﻿import AuthorVM from './AuthorVM';
+import BookVM from './BookVM';
+import SerieVM from './SerieVM';
 
 let self = null;
 
@@ -13,15 +13,15 @@ class App {
     }
 
     declarations() {
-        self.author = new Author();
-        self.book = new Book();
-        self.serie = new Serie();
+        self.authorVM = new AuthorVM();
+        self.bookVM = new BookVM();
+        self.serieVM = new SerieVM();
     }
 
     ini() {
-        self.author.ini();
-        self.book.ini();
-        self.serie.ini();
+        self.authorVM.ini();
+        self.bookVM.ini();
+        self.serieVM.ini();
     }
 }
 
