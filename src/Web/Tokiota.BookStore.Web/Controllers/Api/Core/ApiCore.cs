@@ -81,6 +81,7 @@ namespace Tokiota.BookStore.Web.Controllers.Api.Core
             {
                 await Business.Add(entity);
                 await Business.SaveChanges();
+                await Cache.RemoveAsync($"get_{MyApiKey}");
                 return Ok(new { });
             }
 
@@ -94,6 +95,7 @@ namespace Tokiota.BookStore.Web.Controllers.Api.Core
             {
                 Business.Update(id, entity);
                 await Business.SaveChanges();
+                await Cache.RemoveAsync($"get_{MyApiKey}");
                 return Ok(new { });
             }
 
@@ -107,6 +109,7 @@ namespace Tokiota.BookStore.Web.Controllers.Api.Core
             {
                 await Business.Remove(id);
                 await Business.SaveChanges();
+                await Cache.RemoveAsync($"get_{MyApiKey}");
                 return Ok(new { });
             }
 
