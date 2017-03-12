@@ -2123,7 +2123,8 @@
         "type": "project",
         "framework": ".NETStandard,Version=v1.6",
         "dependencies": {
-          "NETStandard.Library": "1.6.0"
+          "NETStandard.Library": "1.6.0",
+          "Tokiota.BookStore.Entities": "1.0.0"
         },
         "compile": {
           "netstandard1.6/Tokiota.BookStore.XCutting.dll": {}

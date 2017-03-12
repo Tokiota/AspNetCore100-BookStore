@@ -1067,6 +1067,19 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "Tokiota.BookStore.Entities/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.6",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "netstandard1.6/Tokiota.BookStore.Entities.dll": {}
+        },
+        "runtime": {
+          "netstandard1.6/Tokiota.BookStore.Entities.dll": {}
+        }
       }
     }
   },
@@ -4013,11 +4026,17 @@
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._"
       ]
+    },
+    "Tokiota.BookStore.Entities/1.0.0": {
+      "type": "project",
+      "path": "../../Context/Tokiota.BookStore.Entities/project.json",
+      "msbuildProject": "../../Context/Tokiota.BookStore.Entities/Tokiota.BookStore.Entities.xproj"
     }
   },
   "projectFileDependencyGroups": {
     "": [
-      "NETStandard.Library >= 1.6.0"
+      "NETStandard.Library >= 1.6.0",
+      "Tokiota.BookStore.Entities >= 1.0.0-*"
     ],
     ".NETStandard,Version=v1.6": []
   },

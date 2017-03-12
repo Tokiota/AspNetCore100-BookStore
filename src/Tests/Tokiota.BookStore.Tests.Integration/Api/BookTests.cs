@@ -61,7 +61,7 @@ namespace Tokiota.BookStore.Tests.Integration.Api
         }
 
         [Fact]
-        public async Task TestCreateBookAndReturnCreated()
+        public async Task TestCreateBookAndReturnOK()
         {
             var book = new Book
             {
@@ -73,7 +73,7 @@ namespace Tokiota.BookStore.Tests.Integration.Api
             StringContent queryString = new StringContent(serialized, Encoding.UTF8, "application/json");
             var response = await _client.PostAsync("/Api/Books", queryString);
             // Assert
-            Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
 
         [Fact]

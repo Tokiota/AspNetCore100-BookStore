@@ -10,7 +10,7 @@
 
     public class Startup
     {
-        private readonly IConfigurationRoot Configuration;
+        protected readonly IConfigurationRoot Configuration;
 
         public Startup(IHostingEnvironment env)
         {

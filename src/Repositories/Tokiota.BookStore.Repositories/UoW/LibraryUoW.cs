@@ -1,28 +1,26 @@
-﻿using System.Threading.Tasks;
+﻿using Tokiota.BookStore.Repositories.Services.Core;
 
 namespace Tokiota.BookStore.Repositories.UoW
 {
     using System;
+    using System.Threading.Tasks;
     using Context;
     using Entities;
-    using Services.Core;
+    using XCutting;
 
     public class LibraryUoW : ILibraryUoW
     {
         private readonly LibraryContext _context;
 
-        public IRepositoryCore<Author, Guid> AuthorRepository { get; private set; }
-        public IRepositoryCore<Book, Guid> BookRepository { get; private set; }
-        public IRepositoryCore<Serie, Guid> SerieRepository { get; private set; }
+        public IRepositoryCore<Author, Guid> AuthorRepository => new RepositoryCore<Author, Guid>(_context);
+        public IRepositoryCore<Book, Guid> BookRepository => new RepositoryCore<Book, Guid>(_context);
+        public IRepositoryCore<Serie, Guid> SerieRepository => new RepositoryCore<Serie, Guid>(_context);
 
         private bool CanSave = true;
 
-        public LibraryUoW(LibraryContext context, IRepositoryCore<Author, Guid> authorRepository, IRepositoryCore<Book, Guid> bookRepository, IRepositoryCore<Serie, Guid> serieRepository)
+        public LibraryUoW(LibraryContext context)
         {
             this._context = context;
-            this.AuthorRepository = authorRepository;
-            this.BookRepository = bookRepository;
-            this.SerieRepository = serieRepository;
         }
 
         public Task<int> SaveChanges()

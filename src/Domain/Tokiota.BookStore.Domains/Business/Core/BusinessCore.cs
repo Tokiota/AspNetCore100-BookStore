@@ -1,12 +1,9 @@
-﻿using System.Threading.Tasks;
-
-namespace Tokiota.BookStore.Domains.Business.Core
+﻿namespace Tokiota.BookStore.Domains.Business.Core
 {
     using System.Collections.Generic;
-    using System.Linq;
     using Entities.Core;
-    using Repositories.Services.Core;
-    using Repositories.UoW;
+    using System.Threading.Tasks;
+    using XCutting;
 
     public class BusinessCore<TEntity, TId> : IBusinessCore<TEntity, TId> where TEntity : EntityCore<TId>
     {

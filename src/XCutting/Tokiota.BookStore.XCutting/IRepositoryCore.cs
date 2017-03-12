@@ -1,21 +1,22 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Tokiota.BookStore.Entities.Core;
+﻿using System;
+using System.Linq.Expressions;
 
-namespace Tokiota.BookStore.Repositories.Services.Core
+namespace Tokiota.BookStore.XCutting
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Entities.Core;
+
     public interface IRepositoryCore<TEntity, TId> where TEntity : EntityCore<TId>
     {
         #region Gets
 
-        Task<List<TEntity>> Get();
+        Task<List<TEntity>> Get(Expression<Func<TEntity, bool>> filter = null);
 
         Task<TEntity> Get(TId id);
 
         Task<List<TEntity>> Get(IEnumerable<TId> ids);
+
         #endregion
 
         #region Commands

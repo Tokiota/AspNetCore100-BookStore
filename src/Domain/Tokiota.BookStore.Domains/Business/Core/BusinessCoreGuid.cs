@@ -1,11 +1,11 @@
-﻿namespace Tokiota.BookStore.Domains.Business.Core
+﻿
+namespace Tokiota.BookStore.Domains.Business.Core
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Entities.Core;
-    using Repositories.Services.Core;
-    using Repositories.UoW;
+    using XCutting;
 
     public class BusinessCoreGuid<TEntity> : BusinessCore<TEntity, Guid>, IBusinessCoreGuid<TEntity> where TEntity : EntityCore<Guid>
     {

@@ -1,17 +1,13 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Tokiota.BookStore.Context;
-using Tokiota.BookStore.Entities;
-using Tokiota.BookStore.Repositories.Services;
-using Tokiota.BookStore.Repositories.Services.Core;
-using Tokiota.BookStore.Repositories.UoW;
-
-namespace Tokiota.BookStore.Repositories
+﻿namespace Tokiota.BookStore.Repositories
 {
+    using System;
+    using Entities;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Services.Core;
+    using UoW;
+    using XCutting;
+
     public static class Register
     {
         public static void Configure(IServiceCollection services, IConfigurationRoot configuration)
