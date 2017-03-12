@@ -3,8 +3,9 @@ var path = require('path');
 module.exports = {
     entry: {
         libraryapp: path.resolve(__dirname + '/wwwroot/js/app/library/app'),
+        libraryEs6: path.resolve(__dirname + '/wwwroot/js/library/appEs6'),
         vendor: [
-             'vue',
+             'vue'
         ]
     },
     stats: {

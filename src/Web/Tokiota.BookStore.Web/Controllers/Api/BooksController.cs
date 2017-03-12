@@ -1,4 +1,7 @@
-﻿namespace Tokiota.BookStore.Web.Controllers.Api
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Redis;
+
+namespace Tokiota.BookStore.Web.Controllers.Api
 {
     using Core;
     using Domains.Business.Core;
@@ -10,6 +13,6 @@
     [Route("api/[controller]")]
     public class BooksController : ApiCore<Book, BookDto>
     {
-        public BooksController(IBusinessCoreGuid<Book> business, Adapter mapper) : base(business, mapper) { }
+        public BooksController(IBusinessCoreGuid<Book> business, Adapter mapper, IDistributedCache redis) : base("Book", business, mapper, redis) { }
     }
 }

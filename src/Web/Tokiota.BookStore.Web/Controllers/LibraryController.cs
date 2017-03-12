@@ -12,6 +12,12 @@ namespace Tokiota.BookStore.Web.Controllers
         {
             return View();
         }
+
+        public IActionResult Es6()
+        {
+            return View();
+        }
+
         public IActionResult Vue()
         {
             return View();
