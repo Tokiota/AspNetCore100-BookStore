@@ -4,6 +4,7 @@
 
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Domains.Business.Core;
     using Entities.Core;
     using Mapster;
@@ -23,20 +24,20 @@
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var entities = Business.Get();
+            var entities = await Business.Get();
             var mappedEntities = Mapper.Adapt<IEnumerable<TDto>>(entities);
 
             return Ok(mappedEntities);
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
+        public async Task<IActionResult> Get(Guid id)
         {
             if (!id.Equals(Guid.Empty))
             {
-                var entity = Business.Get(id);
+                var entity = await Business.Get(id);
                 if (entity != null)
                 {
                     var mappedEntity = Mapper.Adapt<TDto>(entity);
@@ -48,11 +49,12 @@
         }
 
         [HttpPost]
-        public IActionResult Post(TEnity entity)
+        public async Task<IActionResult> Post(TEnity entity)
         {
             if (entity != null)
             {
-                Business.Add(entity);
+                await Business.Add(entity);
+                await Business.SaveChanges();
                 return Ok(new { });
             }
 
@@ -65,6 +67,7 @@
             if (id != Guid.Empty && entity != null)
             {
                 Business.Update(id, entity);
+                await Business.SaveChanges();
                 return Ok(new {});
             }
 
@@ -76,7 +79,8 @@
         {
             if (id != Guid.Empty)
             {
-                Business.Remove(id);
+                await Business.Remove(id);
+                await Business.SaveChanges();
                 return Ok(new {});
             }
 

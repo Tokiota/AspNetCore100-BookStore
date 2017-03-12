@@ -1,7 +1,9 @@
-﻿namespace Tokiota.BookStore.Repositories.UoW.Core
+﻿using System.Threading.Tasks;
+
+namespace Tokiota.BookStore.Repositories.UoW.Core
 {
     public interface IUoW
     {
-        int SaveChanges();
+        Task<int> SaveChanges();
     }
 }
