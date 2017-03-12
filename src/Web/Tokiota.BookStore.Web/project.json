@@ -18,7 +18,9 @@
     "Mapster": "2.6.1",
     "Microsoft.Extensions.Configuration.FileExtensions": "1.1.0",
     "Microsoft.Extensions.Configuration.Json": "1.1.0",
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final"
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final",
+    // "Microsoft.Extensions.Caching.Redis": "1.1.1",
+    "Microsoft.Extensions.Caching.Redis.Core": "1.0.3"
   },
 
   "tools": {

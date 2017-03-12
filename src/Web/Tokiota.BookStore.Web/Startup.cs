@@ -7,7 +7,7 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using XCutting;
-
+    using StackExchange.Redis;
     public class Startup
     {
         protected readonly IConfigurationRoot Configuration;
@@ -33,6 +33,12 @@
             services.AddMvc();
             services.AddSwagger();
             services.AddMapster();
+            services.AddDistributedRedisCache(options =>
+            {
+                options.InstanceName = "BookStore";
+                options.Configuration = "localhost";
+            });
+
             Register.Configure(services, this.Configuration);
         }
 
@@ -41,6 +47,7 @@
         {
             loggerFactory.AddConsole();
             app.UseSwaggerAndUI();
+
             initializer.Execute();
             if (env.IsDevelopment())
             {
