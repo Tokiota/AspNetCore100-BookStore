@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <AssemblyName>Tokiota.BookStore.Domains</AssemblyName>
+    <PackageId>Tokiota.BookStore.Domains</PackageId>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Context\Tokiota.BookStore.Entities\Tokiota.BookStore.Entities.csproj" />
+    <ProjectReference Include="..\..\Repositories\Tokiota.BookStore.Repositories\Tokiota.BookStore.Repositories.csproj" />
+  </ItemGroup>
+
+</Project>

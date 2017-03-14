@@ -33,7 +33,6 @@ namespace Tokiota.BookStore.Tests.UseCases
         public FindAuthorsTest()
         {
             _factory = new ContextFactory();
-            _factory.Initialize();
             _unitOfWork = _factory.Uow;
 
             _useCase = new FindAuthorsUseCase(_unitOfWork);
