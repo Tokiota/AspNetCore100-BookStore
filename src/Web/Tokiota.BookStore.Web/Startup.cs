@@ -33,11 +33,11 @@
             services.AddMvc();
             services.AddSwagger();
             services.AddMapster();
-            services.AddDistributedRedisCache(options =>
-            {
-                options.InstanceName = "BookStore";
-                options.Configuration = "localhost";
-            });
+            //services.AddDistributedRedisCache(options =>
+            //{
+            //    options.InstanceName = "BookStore";
+            //    options.Configuration = "localhost";
+            //});
 
             Register.Configure(services, this.Configuration);
         }
@@ -49,9 +49,9 @@
             app.UseSwaggerAndUI();
 
             initializer.Execute();
+            app.UseDeveloperExceptionPage();
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
             }
 
             app.UseDefaultFiles();

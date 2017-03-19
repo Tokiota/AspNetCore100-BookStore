@@ -13,6 +13,6 @@ namespace Tokiota.BookStore.Web.Controllers.Api
     [Route("api/[controller]")]
     public class SeriesController : ApiCore<Serie, SerieDto>
     {
-        public SeriesController(IBusinessCoreGuid<Serie> business, Adapter mapper, IDistributedCache redis) : base("Serie", business, mapper, redis) { }
+        public SeriesController(IBusinessCoreGuid<Serie> business, Adapter mapper) : base("Serie", business, mapper) { }
     }
 }

@@ -20,9 +20,9 @@ namespace Tokiota.BookStore.Web.Controllers.Api
         private readonly IBookBusiness bookBusiness;
         private readonly ISerieBusiness serieBusiness;
 
-        public AuthorsController(IBusinessCoreGuid<Author> business, Adapter mapper, IDistributedCache redis, 
+        public AuthorsController(IBusinessCoreGuid<Author> business, Adapter mapper, 
                                     IBookBusiness bookBusiness, ISerieBusiness serieBusiness) 
-            : base("Author", business, mapper, redis)
+            : base("Author", business, mapper)
         {
             this.bookBusiness = bookBusiness;
             this.serieBusiness = serieBusiness;

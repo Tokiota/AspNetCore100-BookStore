@@ -26,34 +26,34 @@ namespace Tokiota.BookStore.Web.Controllers.Api.Core
         protected readonly IDistributedCache Cache;
         protected readonly string MyApiKey;
 
-        public ApiCore(string myApiKey, IBusinessCoreGuid<TEnity> business, Adapter mapper, IDistributedCache cache)
+        public ApiCore(string myApiKey, IBusinessCoreGuid<TEnity> business, Adapter mapper) //, IDistributedCache cache)
         {
             Business = business;
             Mapper = mapper;
-            Cache = cache;
+           // Cache = cache;
             MyApiKey = myApiKey;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var entitiesCached = await Cache.GetStringAsync($"get_{MyApiKey}");
+            //var entitiesCached = await Cache.GetStringAsync($"get_{MyApiKey}");
             IEnumerable<TDto> mappedEntities = null;
-            if (entitiesCached == null)
-            {
+            //if (entitiesCached == null)
+            //{
                 var entities = await Business.Get();
                 mappedEntities = Mapper.Adapt<IEnumerable<TDto>>(entities);
-                var cacheEntryOptions = new DistributedCacheEntryOptions()
-                        .SetSlidingExpiration(TimeSpan.FromDays(30));
-                var str = JsonConvert.SerializeObject(mappedEntities);
+                //var cacheEntryOptions = new DistributedCacheEntryOptions()
+                //        .SetSlidingExpiration(TimeSpan.FromDays(30));
+                //var str = JsonConvert.SerializeObject(mappedEntities);
 
 
-                await Cache.SetStringAsync($"get_{MyApiKey}", str, cacheEntryOptions);
-            }
-            else
-            {
-                mappedEntities = JsonConvert.DeserializeObject<IEnumerable<TDto>>(entitiesCached);
-            }
+                //await Cache.SetStringAsync($"get_{MyApiKey}", str, cacheEntryOptions);
+            //}
+            //else
+            //{
+            //    mappedEntities = JsonConvert.DeserializeObject<IEnumerable<TDto>>(entitiesCached);
+            //}
 
             return Ok(mappedEntities);
         }
@@ -81,7 +81,7 @@ namespace Tokiota.BookStore.Web.Controllers.Api.Core
             {
                 await Business.Add(entity);
                 await Business.SaveChanges();
-                await Cache.RemoveAsync($"get_{MyApiKey}");
+                //await Cache.RemoveAsync($"get_{MyApiKey}");
                 return Ok(new { });
             }
 
@@ -95,7 +95,7 @@ namespace Tokiota.BookStore.Web.Controllers.Api.Core
             {
                 Business.Update(id, entity);
                 await Business.SaveChanges();
-                await Cache.RemoveAsync($"get_{MyApiKey}");
+                //await Cache.RemoveAsync($"get_{MyApiKey}");
                 return Ok(new { });
             }
 
@@ -109,7 +109,7 @@ namespace Tokiota.BookStore.Web.Controllers.Api.Core
             {
                 await Business.Remove(id);
                 await Business.SaveChanges();
-                await Cache.RemoveAsync($"get_{MyApiKey}");
+                //await Cache.RemoveAsync($"get_{MyApiKey}");
                 return Ok(new { });
             }
 
